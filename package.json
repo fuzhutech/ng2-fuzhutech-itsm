@@ -24,10 +24,11 @@
         "@angular/platform-browser-dynamic": "^4.2.6",
         "@angular/router": "^4.2.6",
         "core-js": "^2.4.1",
+        "ng2-file-upload": "^1.2.0",
         "ng2-fuzhutech-common": "0.0.8",
         "primeng": "^4.1.0",
         "rxjs": "^5.1.0",
-    "ts-md5": "^1.2.0",
+        "ts-md5": "^1.2.0",
         "zone.js": "^0.8.4"
     },
     "devDependencies": {

@@ -1,0 +1,70 @@
+<form [formGroup]="registerForm">
+
+    <h2 md-dialog-title>{{dialogHeader}}</h2>
+
+    <md-dialog-content *ngIf="record">
+        <div layout="row">
+            <md-input-container style="width:100%;">
+                <input mdInput [(ngModel)]="record.serialNumber" placeholder="序列号*" formControlName="serialNumber">
+                <md-error *ngIf="registerForm.controls.serialNumber?.errors?.minlength">长度必须至少4</md-error>
+                <md-error *ngIf="registerForm.controls.serialNumber?.errors?.required">必须输入</md-error>
+            </md-input-container>
+
+            <md-input-container>
+                <input mdInput [(ngModel)]="record.macAddress" placeholder="MAC地址" [ngModelOptions]="{standalone: true}">
+            </md-input-container>
+
+            <md-input-container>
+                <input mdInput [(ngModel)]="record.brand" placeholder="品牌" [ngModelOptions]="{standalone: true}">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput [(ngModel)]="record.model" placeholder="型号" [ngModelOptions]="{standalone: true}">
+            </md-input-container>
+        </div>
+        <div layout="row">
+            <md-input-container>
+                <input mdInput [(ngModel)]="record.receiptDate" placeholder="接收日期" [ngModelOptions]="{standalone: true}">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput [(ngModel)]="record.warranty" placeholder="质保日期" [ngModelOptions]="{standalone: true}">
+            </md-input-container>
+
+            <md-select placeholder="状态" [(ngModel)]="record.status" formControlName="status">
+                <md-option *ngFor="let state of statuses" [value]="state.value">{{ state.label }}</md-option>
+            </md-select>
+
+        </div>
+
+
+        <md-input-container style="width:100%;">
+        <textarea mdInput [(ngModel)]="record.hardware" placeholder="硬件信息"
+                  [ngModelOptions]="{standalone: true}"></textarea>
+        </md-input-container>
+
+        <md-input-container style="width:100%;">
+        <textarea mdInput [(ngModel)]="record.software" placeholder="软件信息"
+                  [ngModelOptions]="{standalone: true}"></textarea>
+        </md-input-container>
+
+        <md-input-container style="width:100%;">
+        <textarea mdInput [(ngModel)]="record.applyReason" placeholder="申请事由"
+                  [ngModelOptions]="{standalone: true}"></textarea>
+        </md-input-container>
+
+        <md-input-container style="width:100%;">
+        <textarea mdInput [(ngModel)]="record.description" placeholder="描述"
+                  [ngModelOptions]="{standalone: true}"></textarea>
+        </md-input-container>
+
+    </md-dialog-content>
+
+    <md-dialog-actions *ngIf="progress" [attr.align]="actionsAlignment">
+        <md-progress-bar mode="indeterminate" color="primary" style="width: 100%"></md-progress-bar>
+    </md-dialog-actions>
+
+    <md-dialog-actions [attr.align]="actionsAlignment">
+        <button md-raised-button color="primary" (click)="handleReset(registerForm)">重置</button>
+        <button md-raised-button color="primary" (click)="handleConfirm()" [disabled]="registerForm.invalid">确认</button>
+        <button md-raised-button color="primary" (click)="handleCancel()">取消</button>
+    </md-dialog-actions>
+</form>

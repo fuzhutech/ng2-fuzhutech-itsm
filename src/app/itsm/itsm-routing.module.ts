@@ -11,11 +11,21 @@ import {MainLinkData} from 'ng2-fuzhutech-common';
                 path: '',
                 component: ItsmComponent,
                 children: [
-                    {path: '', redirectTo: 'server'},
-                    {path: 'computer', loadChildren: './computer/computer.module#FzComputerModule'},
-                    {path: 'device', loadChildren: './device/device.module#FzDeviceModule'},
-                    {path: 'server', loadChildren: './server/server.module#FzServerModule'}
-
+                    {path: '', redirectTo: 'computer'},
+                    ///硬件设备///
+                    {path: 'computer', loadChildren: './hardware/hardware.module#FzComputerModule'},
+                    {path: 'device', loadChildren: './hardware/hardware.module#FzDeviceModule'},
+                    {path: 'server', loadChildren: './hardware/hardware.module#FzServerModule'},
+                    ///项目管理///
+                    {path: 'project', loadChildren: './project/project.module#FzProjectModule'},
+                    ///预算费用///
+                    {path: 'annual-budget', loadChildren: './budget/budget.module#FzBudgetModule'},
+                    {path: 'budget-outlay', loadChildren: './budget/budget.module#FzBudgetOutlayModule'},
+                    ///维护记录///
+                    {path: 'maintenance', loadChildren: './maintenance/maintenance.module#FzMaintenanceModule'},
+                    ///文档管理///
+                    {path: 'document-category', loadChildren: './document/document.module#FzDocumentCategoryModule'},
+                    {path: 'document', loadChildren: './document/document.module#FzDocumentListModule'}
                 ]
             }
         ])
@@ -29,7 +39,7 @@ export class AuthRoutingModule {
 
 export const ConfigMenuData: MainLinkData[] = [
     {
-        id: 'menu_basic_config',
+        id: 'menu_hardware',
         img: 'showcase/resources/images/mono/menu.svg',
         text: '硬件设备',
         subMenuLinkCol: [
@@ -48,33 +58,55 @@ export const ConfigMenuData: MainLinkData[] = [
         ]
     },
     {
-        id: 'menu_system management',
+        id: 'menu_project',
         img: 'showcase/resources/images/mono/menu.svg',
         text: '项目管理',
         subMenuLinkCol: [
             {
-                path: 'user',
-                title: '项目列表'
-            },
-            {
-                path: 'organization',
-                title: '管理流程'
+                path: 'project',
+                title: '项目流程'
             }
         ]
     },
     {
-        id: 'menu_query',
+        id: 'menu_budget',
         img: 'showcase/resources/images/mono/menu.svg',
         text: '预算费用',
         subMenuLinkCol: [
             {
-                path: 'log',
+                path: 'annual-budget',
                 title: '年度预算'
             },
             {
-                path: 'log',
-                title: '支出管理'
+                path: 'budget-outlay',
+                title: '预算支出'
             }
         ]
-    }
+    },
+    {
+        id: 'menu_maintenance',
+        img: 'showcase/resources/images/mono/menu.svg',
+        text: '维护记录',
+        subMenuLinkCol: [
+            {
+                path: 'maintenance',
+                title: '维护记录'
+            }
+        ]
+    },
+    {
+        id: 'menu_document',
+        img: 'showcase/resources/images/mono/menu.svg',
+        text: '文档管理',
+        subMenuLinkCol: [
+            {
+                path: 'document',
+                title: '文档列表'
+            },
+            {
+                path: 'document-category',
+                title: '文档类别'
+            }
+        ]
+    },
 ];

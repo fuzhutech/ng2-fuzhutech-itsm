@@ -1,0 +1,49 @@
+<fz-toolbar [disabledView]="!selectedRecord" (onViewClick)="handleView()" (onAddClick)="handleAdd()"
+            [disabledEdit]="!selectedRecord" (onEditClick)="handleEdit()"
+            [disabledDelete]="!selectedRecord" (onDeleteClick)="handleDelete()"
+            (onRefreshClick)="handleRefresh()"
+            [menuId]="currentMenuId" [authInfo]="currentAuthInfo" [menuInfo]="currentMenuInfo">
+
+    <button md-button (click)="grant()">
+        <md-icon>view_module</md-icon>
+        上传附件
+    </button>
+</fz-toolbar>
+
+<div class="ui-widget-header ui-helper-clearfix" style="padding:4px 10px;border-bottom: 0 none">
+    <i class="fa fa-search" style="float:left;margin:4px 4px 0 0"></i>
+    <input #gb type="text" pInputText size="50" style="float:left" placeholder="Global Filter">
+</div>
+<p-dataTable [value]="records" selectionMode="single" [(selection)]="selectedRecord"
+             [paginator]="true" [rows]="15" [responsive]="true" resizableColumns="true"
+             [globalFilter]="gb" #dt>
+    <!--header>工位电脑管理</header-->
+    <!--p-column field="id" header="id"></p-column-->
+    <p-column field="identifier" header="标识编码"></p-column>
+    <p-column field="site" header="地点"></p-column>
+    <p-column field="kind" header="类型"></p-column>
+    <!--p-column-- field="brand" header="品牌"></p-column-->
+    <p-column field="model" header="机器型号"></p-column>
+    <p-column field="serialNumber" header="序列号(SN码)"></p-column>
+    <p-column field="assetNumber" header="资产编号"></p-column>
+    <p-column field="assetTag" header="标签号"></p-column>
+    <p-column field="manufacturingDate" header="生产日期"></p-column>
+    <p-column field="assignDate" header="领用日期"></p-column>
+    <p-column field="receiptDate" header="入账日期"></p-column>
+    <p-column field="user" header="使用人"></p-column>
+    <p-column field="useState" header="使用状态">
+        <ng-template let-col let-data="rowData" pTemplate="body">
+            {{ data[col.field] == '0'? '正在使用':'异常' }}
+        </ng-template>
+    </p-column>
+    <p-column field="memo" header="备注"></p-column>
+
+    <!--p-column field="macAddress" header="MAC地址"></p-column>
+    <p-column field="receiptDate" header="接收日期"></p-column>
+    <p-column field="warranty" header="质保期"></p-column>
+    <p-column field="deliveryDate" header="交货日期"></p-column>
+    <p-column field="applyReason" header="申请事由"></p-column>
+    <p-column field="hardware" header="硬件信息"></p-column>
+    <p-column field="software" header="软件信息"></p-column>
+    <p-column field="configuration" header="配置信息"></p-column-->
+</p-dataTable>
