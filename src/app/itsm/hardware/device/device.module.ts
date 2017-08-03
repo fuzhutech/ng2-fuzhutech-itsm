@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import { SharedModule } from '../../../shared/shared.module';
 
 import {DataTableModule, PickListModule} from 'primeng/primeng';
 import {MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdSelectModule} from '@angular/material';
@@ -16,7 +16,8 @@ import {DeviceDialogComponent} from './dialog/device-dialog.component';
 
 @NgModule({
     imports: [
-        CommonModule, FormsModule, ReactiveFormsModule, HttpModule,
+        SharedModule,
+        ReactiveFormsModule, HttpModule,
         DataTableModule, PickListModule,
         MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdSelectModule,
         FzToolbarModule,

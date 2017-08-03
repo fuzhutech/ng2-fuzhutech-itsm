@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import { SharedModule } from '../../shared/shared.module';
 
 import {DataTableModule, PickListModule} from 'primeng/primeng';
 import {
@@ -23,7 +22,8 @@ import {MaintenanceDialogComponent} from './dialog/maintenance-dialog.component'
 
 @NgModule({
     imports: [
-        CommonModule, FormsModule, HttpModule,
+        SharedModule,
+        HttpModule,
         DataTableModule, PickListModule,
         MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdSelectModule, MdTabsModule,
         FzToolbarModule,

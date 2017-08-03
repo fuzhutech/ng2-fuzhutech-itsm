@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+
+import { SharedModule } from '../../../shared/shared.module';
 
 import {DataTableModule, PickListModule} from 'primeng/primeng';
 import {MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdSelectModule} from '@angular/material';
@@ -16,7 +16,8 @@ import {BudgetDialogComponent} from './dialog/budget-dialog.component';
 
 @NgModule({
     imports: [
-        CommonModule, FormsModule, HttpModule,
+        SharedModule,
+        HttpModule,
         DataTableModule, PickListModule,
         MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdSelectModule,
         FzToolbarModule,

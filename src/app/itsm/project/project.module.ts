@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+
+import { SharedModule } from '../../shared/shared.module';
 
 import {DataTableModule, PickListModule} from 'primeng/primeng';
 import {
@@ -26,7 +26,8 @@ import {ProjectUploadDialogComponent} from './upload-dialog/project-upload-dialo
 
 @NgModule({
     imports: [
-        CommonModule, FormsModule, HttpModule,
+        SharedModule,
+        HttpModule,
         DataTableModule, PickListModule,
         MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdProgressBarModule, MdSelectModule,
         FileUploadModule,
