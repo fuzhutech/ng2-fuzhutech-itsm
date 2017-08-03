@@ -1,12 +1,14 @@
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 import {BudgetOutlayComponent} from './budget-outlay.component';
+
+const routes: Routes = [
+    {path: '', component: BudgetOutlayComponent}
+];
 
 @NgModule({
     imports: [
-        RouterModule.forChild([
-            {path: '', component: BudgetOutlayComponent}
-        ])
+        RouterModule.forChild(routes)
     ],
     exports: [
         RouterModule

@@ -1,12 +1,14 @@
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 import {MaintenanceComponent} from './maintenance.component';
+
+const routes: Routes = [
+    {path: '', component: MaintenanceComponent}
+];
 
 @NgModule({
     imports: [
-        RouterModule.forChild([
-            {path: '', component: MaintenanceComponent}
-        ])
+        RouterModule.forChild(routes)
     ],
     exports: [
         RouterModule

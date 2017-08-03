@@ -1,12 +1,14 @@
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 import {DocumentCategoryComponent} from './document-category.component';
+
+const routes: Routes = [
+    {path: '', component: DocumentCategoryComponent}
+];
 
 @NgModule({
     imports: [
-        RouterModule.forChild([
-            {path: '', component: DocumentCategoryComponent}
-        ])
+        RouterModule.forChild(routes)
     ],
     exports: [
         RouterModule

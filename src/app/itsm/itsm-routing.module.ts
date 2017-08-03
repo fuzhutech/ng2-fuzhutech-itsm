@@ -1,34 +1,36 @@
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 import {ItsmComponent} from './itsm.component';
 import {MainLinkData} from 'ng2-fuzhutech-common';
 
+const routes: Routes = [
+    //{ path: '', redirectTo: 'home' },
+    {
+        path: '',
+        component: ItsmComponent,
+        children: [
+            {path: '', redirectTo: 'computer'},
+            ///硬件设备///
+            {path: 'computer', loadChildren: './hardware/hardware.module#FzComputerModule'},
+            {path: 'device', loadChildren: './hardware/hardware.module#FzDeviceModule'},
+            {path: 'server', loadChildren: './hardware/hardware.module#FzServerModule'},
+            ///项目管理///
+            {path: 'project', loadChildren: './project/project.module#FzProjectModule'},
+            ///预算费用///
+            {path: 'annual-budget', loadChildren: './budget/budget.module#FzBudgetModule'},
+            {path: 'budget-outlay', loadChildren: './budget/budget.module#FzBudgetOutlayModule'},
+            ///维护记录///
+            {path: 'maintenance', loadChildren: './maintenance/maintenance.module#FzMaintenanceModule'},
+            ///文档管理///
+            {path: 'document-category', loadChildren: './document/document.module#FzDocumentCategoryModule'},
+            {path: 'document', loadChildren: './document/document.module#FzDocumentListModule'}
+        ]
+    }
+]
+
 @NgModule({
     imports: [
-        RouterModule.forChild([
-            //{ path: '', redirectTo: 'home' },
-            {
-                path: '',
-                component: ItsmComponent,
-                children: [
-                    {path: '', redirectTo: 'computer'},
-                    ///硬件设备///
-                    {path: 'computer', loadChildren: './hardware/hardware.module#FzComputerModule'},
-                    {path: 'device', loadChildren: './hardware/hardware.module#FzDeviceModule'},
-                    {path: 'server', loadChildren: './hardware/hardware.module#FzServerModule'},
-                    ///项目管理///
-                    {path: 'project', loadChildren: './project/project.module#FzProjectModule'},
-                    ///预算费用///
-                    {path: 'annual-budget', loadChildren: './budget/budget.module#FzBudgetModule'},
-                    {path: 'budget-outlay', loadChildren: './budget/budget.module#FzBudgetOutlayModule'},
-                    ///维护记录///
-                    {path: 'maintenance', loadChildren: './maintenance/maintenance.module#FzMaintenanceModule'},
-                    ///文档管理///
-                    {path: 'document-category', loadChildren: './document/document.module#FzDocumentCategoryModule'},
-                    {path: 'document', loadChildren: './document/document.module#FzDocumentListModule'}
-                ]
-            }
-        ])
+        RouterModule.forChild(routes)
     ],
     exports: [
         RouterModule
