@@ -1,15 +1,19 @@
-<fz-toolbar [disabledView]="!selectedRecord" (onViewClick)="handleView()" (onAddClick)="handleAdd()"
+<fz-toolbar [disabledView]="!selectedRecord" (onViewClick)="handleView()"
+            (onAddClick)="handleAdd()"
             [disabledEdit]="!selectedRecord" (onEditClick)="handleEdit()"
             [disabledDelete]="!selectedRecord" (onDeleteClick)="handleDelete()"
             (onRefreshClick)="handleRefresh()"
+            (onImportClick)="handleImport()"
+            (onExportClick)="handleExport()"
             [menuId]="currentMenuId" [authInfo]="currentAuthInfo" [menuInfo]="currentMenuInfo">
+
 </fz-toolbar>
 
 <div class="ui-widget-header ui-helper-clearfix" style="padding:4px 10px;border-bottom: 0 none">
     <i class="fa fa-search" style="float:left;margin:4px 4px 0 0"></i>
     <input #gb type="text" pInputText size="50" style="float:left" placeholder="Global Filter">
 </div>
-<p-dataTable [value]="records" selectionMode="single" [(selection)]="selectedRecord"
+<p-dataTable [value]="records$ | async" selectionMode="single" [(selection)]="selectedRecord"
              [paginator]="true" [rows]="15" [responsive]="true" resizableColumns="true"
              [globalFilter]="gb" #dt>
     <p-header>工位电脑管理</p-header>
@@ -46,7 +50,7 @@
 <div style="height: 100px"></div>
 <md-tab-group class="demo-tab-group">
     <md-tab label="使用记录">
-        <p-dataTable [value]="records" selectionMode="single" [(selection)]="selectedRecord"
+        <p-dataTable [value]="records$ | async" selectionMode="single" [(selection)]="selectedRecord"
                      [paginator]="true" [rows]="15" [responsive]="true" resizableColumns="true">
             <!--p-header>使用记录</p-header-->
             <p-column field="id" header="id"></p-column>
