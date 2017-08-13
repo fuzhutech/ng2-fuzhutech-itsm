@@ -13,9 +13,9 @@
     <i class="fa fa-search" style="float:left;margin:4px 4px 0 0"></i>
     <input #gb type="text" pInputText size="50" style="float:left" placeholder="Global Filter">
 </div>
-<p-dataTable [value]="records$ | async" selectionMode="single" [(selection)]="selectedRecord"
+<p-dataTable #dt [value]="records$ | async" selectionMode="single" [(selection)]="selectedRecord"
              [paginator]="true" [rows]="15" [responsive]="true" resizableColumns="true"
-             [globalFilter]="gb" #dt>
+             [globalFilter]="gb" (onRowSelect)="handleRowSelect($event)">
     <p-header>工位电脑管理</p-header>
     <!--p-column field="id" header="id"></p-column-->
     <p-column field="identifier" header="标识编码"></p-column>
@@ -50,25 +50,9 @@
 <div style="height: 100px"></div>
 <md-tab-group class="demo-tab-group">
     <md-tab label="使用记录">
-        <p-dataTable [value]="records$ | async" selectionMode="single" [(selection)]="selectedRecord"
-                     [paginator]="true" [rows]="15" [responsive]="true" resizableColumns="true">
-            <!--p-header>使用记录</p-header-->
-            <p-column field="id" header="id"></p-column>
-            <p-column field="assignDate" header="领用日期"></p-column>
-            <p-column field="site" header="地点"></p-column>
-            <p-column field="user" header="使用人"></p-column>
-            <p-column field="memo" header="备注"></p-column>
-        </p-dataTable>
+        <fz-computer-usage></fz-computer-usage>
     </md-tab>
     <md-tab label="维修记录">
-        <p-dataTable [value]="records" selectionMode="single" [(selection)]="selectedRecord"
-                     [paginator]="true" [rows]="15" [responsive]="true" resizableColumns="true">
-            <!--p-header>使用记录</p-header-->
-            <p-column field="id" header="id"></p-column>
-            <p-column field="assignDate" header="日期"></p-column>
-            <p-column field="user" header="使用人"></p-column>
-            <p-column field="site" header="金额"></p-column>
-            <p-column field="memo" header="备注"></p-column>
-        </p-dataTable>
+        <fz-computer-maintain></fz-computer-maintain>
     </md-tab>
 </md-tab-group>

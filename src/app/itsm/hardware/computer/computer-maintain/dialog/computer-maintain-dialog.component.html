@@ -1,0 +1,124 @@
+<form novalidate #userForm="ngForm">
+    <md-toolbar md-dialog-title color="primary">{{dialogHeader}}</md-toolbar>
+
+    <md-dialog-content *ngIf="record">
+        <!--form [formGroup]="userForm"-->
+        <!--md-input-container class="demo-full-width">
+          <input mdInput placeholder="Company (disabled)" disabled value="Google">
+        </md-input-container-->
+
+        <div layout="row">
+            <md-input-container>
+                <input mdInput name="identifier1" [(ngModel)]="record.identifier" placeholder="标识编码" required>
+                <md-error>This field is required</md-error>
+            </md-input-container>
+            <md-input-container>
+                <input mdInput #postalCode maxLength="8" name="receipt_date" [(ngModel)]="record.receipt_date"
+                       placeholder="接收日期1" value="20170412">
+                <md-hint>(e.g.) 20170412</md-hint>
+                <md-hint align="end">
+                    <md-icon>mode_edit</md-icon>
+                    {{postalCode.value.length}} / 8
+                </md-hint>
+
+            </md-input-container>
+            <md-select placeholder="类型" [(ngModel)]="record.kind" name="kind" required>
+                <md-option value="笔记本">笔记本</md-option>
+                <md-option value="台式机">台式机</md-option>
+            </md-select>
+            <md-input-container>
+                <input mdInput name="site" [(ngModel)]="record.site" placeholder="地点" required>
+            </md-input-container>
+
+            <!--md-input-container>
+              <input mdInput [(ngModel)]="record.macAddress" placeholder="MAC地址">
+            </md-input-container-->
+
+        </div>
+        <div layout="row">
+            <md-input-container><!--style="width:100%;"-->
+                <input mdInput [(ngModel)]="record.serialNumber" placeholder="序列号"
+                       [ngModelOptions]="{standalone: true}">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput name="brand" [(ngModel)]="record.brand" placeholder="品牌">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput name="model" [(ngModel)]="record.model" placeholder="机器型号">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput name="manufacturingDate" [(ngModel)]="record.manufacturingDate" placeholder="生产日期">
+                <md-hint>(e.g.) 20170412</md-hint>
+            </md-input-container>
+        </div>
+        <div layout="row">
+            <md-input-container>
+                <input mdInput name="receiptDate" [(ngModel)]="record.receiptDate" placeholder="入账日期">
+            </md-input-container>
+
+            <md-input-container>
+                <input mdInput name="assetNumber" [ngModel]="record.assetNumber" required minlength="11" maxlength="11"
+                       placeholder="资产编号" #assetNumber="ngModel">
+                <md-error *ngIf="assetNumber.errors?.minlength">资产编号长度必须为11</md-error>
+                <md-error *ngIf="assetNumber.errors?.required">必须输入资产编号</md-error>
+            </md-input-container>
+
+            <md-input-container>
+                <input mdInput name="assetTag" [(ngModel)]="record.assetTag" placeholder="标签号">
+            </md-input-container>
+        </div>
+        <div layout="row">
+
+            <md-input-container>
+                <input mdInput name="assignDate" [(ngModel)]="record.assignDate" placeholder="分配日期">
+            </md-input-container>
+
+            <!--md-input-container>
+              <input mdInput [(ngModel)]="record.receiptDate" placeholder="接收日期">
+            </md-input-container>
+            <md-input-container>
+              <input mdInput [(ngModel)]="record.warranty" placeholder="质保日期">
+            </md-input-container-->
+
+            <md-input-container>
+                <input mdInput name="user" [(ngModel)]="record.user" placeholder="使用人">
+            </md-input-container>
+            <md-select placeholder="使用状态" [(ngModel)]="record.useState" name="useState">
+                <md-option [value]="0">闲置待用</md-option>
+                <md-option [value]="1">正常使用</md-option>
+                <md-option [value]="2">无法使用</md-option>
+                <!--md-option *ngFor="let state of statuses" [value]="state.value">{{ state.label }}</md-option-->
+            </md-select>
+
+        </div>
+        <!--md-input-container style="width:100%;">
+          <textarea mdInput [(ngModel)]="record.hardware" placeholder="硬件信息"></textarea>
+        </md-input-container>
+
+        <md-input-container style="width:100%;">
+          <textarea mdInput [(ngModel)]="record.software" placeholder="软件信息"></textarea>
+        </md-input-container>
+
+        <md-input-container style="width:100%;">
+          <textarea mdInput [(ngModel)]="record.applyReason" placeholder="申请事由"></textarea>
+        </md-input-container>
+
+        <md-input-container style="width:100%;">
+          <textarea mdInput [(ngModel)]="record.description" placeholder="描述"></textarea>
+        </md-input-container-->
+        <md-input-container style="width:100%;">
+            <textarea mdInput name="memo" [(ngModel)]="record.memo" placeholder="备注"></textarea>
+        </md-input-container>
+
+    </md-dialog-content>
+
+    <md-dialog-actions *ngIf="progress" [attr.align]="actionsAlignment">
+        <md-progress-bar mode="indeterminate" color="primary" style="width: 100%"></md-progress-bar>
+    </md-dialog-actions>
+
+    <md-dialog-actions [attr.align]="actionsAlignment">
+        <button md-raised-button color="primary" (click)="handleReset(userForm)">重置</button>
+        <button md-raised-button color="primary" (click)="handleConfirm()" [disabled]="userForm.invalid">确认</button>
+        <button md-raised-button color="primary" (click)="handleCancel()">取消</button>
+    </md-dialog-actions>
+</form>

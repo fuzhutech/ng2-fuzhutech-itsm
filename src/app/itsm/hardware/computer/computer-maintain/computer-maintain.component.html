@@ -1,0 +1,30 @@
+<fz-toolbar [disabledView]="!selectedRecord" (onViewClick)="handleView()"
+            (onAddClick)="handleAdd()"
+            [disabledEdit]="!selectedRecord" (onEditClick)="handleEdit()"
+            [disabledDelete]="!selectedRecord" (onDeleteClick)="handleDelete()"
+            (onRefreshClick)="handleRefresh()"
+            (onImportClick)="handleImport()"
+            (onExportClick)="handleExport()"
+            [menuId]="currentMenuId" [authInfo]="currentAuthInfo" [menuInfo]="currentMenuInfo">
+
+</fz-toolbar>
+
+<div class="ui-widget-header ui-helper-clearfix" style="padding:4px 10px;border-bottom: 0 none">
+    <i class="fa fa-search" style="float:left;margin:4px 4px 0 0"></i>
+    <input #gb type="text" pInputText size="50" style="float:left" placeholder="Global Filter">
+</div>
+<p-dataTable #dt [value]="records$ | async" selectionMode="single" [(selection)]="selectedRecord"
+             [paginator]="true" [rows]="15" [responsive]="true" resizableColumns="true"
+             [globalFilter]="gb">
+    <p-header>工位电脑管理</p-header>
+    <!--p-column field="id" header="id"></p-column-->
+    <p-column field="id" header="id"></p-column>
+    <p-column field="maintainDate" header="日期"></p-column>
+    <p-column field="maintainer" header="维护者"></p-column>
+    <p-column field="computerId" header="computerId"></p-column>
+    <p-column field="userId" header="userId"></p-column>
+    <p-column field="userName" header="用户名"></p-column>
+    <p-column field="memo" header="备注"></p-column>
+    <p-column field="createTime" header="创建时间"></p-column>
+    <p-column field="modifyTime" header="更新时间"></p-column>
+</p-dataTable>
